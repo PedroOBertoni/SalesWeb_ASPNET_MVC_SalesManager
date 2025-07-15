@@ -1,0 +1,44 @@
+﻿:root {
+    --primary-color: #00e0e0; /* Ciano vibrante */
+    --bg-color: #0d0d0d; /* Quase preto */
+    --text-color: #ffffff; /* Branco puro */
+    --muted-text: #aaaaaa; /* Cinza claro */
+    --card-bg: #1a1a1a; /* Cinza bem escuro */
+    --border-color: #333333; /* Borda sutil */
+    --navbar-bg: #000000; /* Preto puro para o cabeçalho */
+}
+
+.departaments-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+    /* Alinha título com tabela */
+    .departaments-content h2 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+/* Alinha botão com tabela */
+.btn-departament {
+    text-align: center;
+}
+
+.centered-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Centraliza botão */
+.centered-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.action-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* espaço entre os ícones */
+}

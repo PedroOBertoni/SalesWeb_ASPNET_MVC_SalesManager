@@ -1,0 +1,39 @@
+﻿
+@model SalesWebMvc.Models.ViewModels.ErrorViewModel
+
+@{
+    ViewData["Title"] = "Erro na Operação"; // Título da página de erro
+}
+
+@section ExtraStyles {
+    <link rel="stylesheet" href="~/css/error.css" />
+}
+
+<div class="error-container">
+    <h1 class="text-danger">Erro!</h1>
+    <h2 class="text-danger">@Html.Raw(Model.Message)</h2>
+
+    @if (Model.RequestId != null)
+    {
+        <p>
+            <strong>ID da Requisição:</strong> <code>@Model.RequestId</code>
+        </p>
+    }
+
+    <div class="error-actions">
+        @if (Model.EntityType == "Seller")
+        {
+            <a asp-action="Index" asp-controller="Sellers" class="btn-primary">Voltar à Lista de Vendedores</a>
+        }
+        else if (Model.EntityType == "Department")
+        {
+            <a asp-action="Index" asp-controller="Departments" class="btn-primary">Voltar à Lista de Departamentos</a>
+        }
+        else
+        {
+            <a asp-action="Index" asp-controller="Home" class="btn-info">Voltar à Página Inicial</a>
+            <a asp-action="Index" asp-controller="Sellers" >Lista de Vendedores</a>
+            <a asp-action="Index" asp-controller="Departments" >Lista de Departamentos</a>
+        }
+    </div>
+</div>

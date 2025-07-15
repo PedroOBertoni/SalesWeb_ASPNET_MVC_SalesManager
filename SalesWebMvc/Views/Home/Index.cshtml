@@ -1,0 +1,123 @@
+﻿@{
+    ViewData["Title"] = "Home";
+    ViewData["BodyClass"] = "home-page";
+}
+
+@section ExtraStyles {
+    <link rel="stylesheet" href="~/css/index.css" />
+}
+
+@section ExtraScripts {
+    <script src="~/js/index.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const explorarRecursosBtn = document.getElementById('explorarRecursosBtn');
+            const recursosSecao = document.getElementById('recursos-secao');
+
+            if (explorarRecursosBtn && recursosSecao) {
+                explorarRecursosBtn.addEventListener('click', function() {
+                    recursosSecao.scrollIntoView({
+                        behavior: 'smooth', // Para uma rolagem suave
+                        block: 'start'      // Alinha o topo da seção com o topo da viewport
+                    });
+                });
+            }
+        });
+    </script>
+}
+
+<div class="carousel-wrapper">
+    <div class="carousel-container">
+        <div class="carousel-slide active" style="background-image: url('/images/bg1.jpg');">
+            <div class="carousel-overlay">
+                <div class="carousel-text">
+                    <h1 class="title-white">SalesWeb: Sua Gestão de Vendas, Descomplicada.</h1>
+                    <p class="lead">Transforme dados em decisões estratégicas com insights claros e acessíveis.</p>
+                    <button id="explorarRecursosBtn" class="btn-primary">Explorar Recursos</button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-slide" style="background-image: url('/images/bg2.jpg');">
+            <div class="carousel-overlay">
+                <div class="carousel-text">
+                    <h1 class="title-white">SalesWeb: Sua Gestão de Vendas, Descomplicada.</h1>
+                    <p class="lead">Transforme dados em decisões estratégicas com insights claros e acessíveis.</p>
+                    <button class="btn-primary">Explorar Recursos</button> @* Este botão não está vinculado ao scroll para a seção de recursos, pois está em um slide que não é o inicial. Se desejar que ele também role, adicione o id="explorarRecursosBtn" e ajuste o JS para selecionar todos os botões com esse ID ou uma classe específica. *@
+                </div>
+            </div>
+        </div>
+        <div class="carousel-slide" style="background-image: url('/images/bg3.jpg');">
+            <div class="carousel-overlay">
+                <div class="carousel-text">
+                    <h1 class="title-white">SalesWeb: Sua Gestão de Vendas, Descomplicada.</h1>
+                    <p class="lead">Transforme dados em decisões estratégicas com insights claros e acessíveis.</p>
+                    <button class="btn-primary">Explorar Recursos</button> @* O mesmo para este slide. *@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="recursos-secao" class="main-content-container">
+    <h2 class="title-cian">Recursos que Impulsionam Sua Análise</h2>
+    <div class="cards-container">
+        <div class="feature-card">
+            <i class="fas fa-building feature-icon"></i> <h3 class="card-title">Departamentos</h3>
+            <p class="card-text">Organize sua estrutura de vendas e gerencie equipes com eficiência.</p>
+            <a href="/Departments/Index" class="btn-primary">Acessar</a>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-users feature-icon"></i> <h3 class="card-title">Vendedores</h3>
+            <p class="card-text">Controle detalhado sobre seus vendedores, seus dados e suas atribuições.</p>
+            <a href="/Sellers/Index" class="btn-primary">Acessar</a>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-search-dollar feature-icon"></i> <h3 class="card-title">Busca Simples</h3>
+            <p class="card-text">Analise o desempenho de vendas com buscas detalhadas e gráficos ilustrativos.</p>
+            <a href="/SalesRecords/IndexSimpleSearch" class="btn-primary">Acessar</a>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-sitemap feature-icon"></i> <h3 class="card-title">Busca por Departamento</h3>
+            <p class="card-text">Analise o desempenho de vendas agrupadas por departamento, com gráficos.</p>
+            <a href="/SalesRecords/IndexGroupingSearch" class="btn-primary">Acessar</a>
+        </div>
+    </div>
+</div>
+
+<div class="info-section">
+    <div class="info-content-flex">
+        <div class="info-text">
+            <h2 class="subtitle-white">Sobre o Projeto SalesWeb</h2>
+            <p>
+                O SalesWeb é um projeto de estudo prático desenvolvido em <strong>C# com arquitetura MVC</strong> e <strong>Entity Framework Core</strong>, demonstrando o fluxo completo de dados em uma aplicação de gestão de vendas.
+            </p>
+            <a asp-controller="Home" asp-action="AboutProject" class="btn-dark">Saiba Mais</a>
+        </div>
+        <div class="info-image">
+            <img src="/images/imageIndexProject.png" alt="Imagem sobre o projeto">
+        </div>
+    </div>
+</div>
+
+<div class="info-section mt-5">
+    <div class="info-content-flex-reverse">
+        <div class="info-image">
+            <img src="/images/imageIndexPerson.png" alt="Imagem sobre mim">
+        </div>
+        <div class="info-text">
+            <h2 class="subtitle-white">Sobre Mim</h2>
+            <p>
+                Olá! Sou um desenvolvedor apaixonado por criar soluções robustas e eficientes. Com experiência em <strong>C#</strong>, <strong>ASP.NET Core MVC</strong> e <strong>desenvolvimento front-end</strong>, busco constantemente aprender e aplicar as melhores práticas para entregar software de alta qualidade.
+            </p>
+            <a asp-controller="Home" asp-action="About" class="btn-dark">Saiba Mais</a>
+        </div>
+    </div>
+</div>
+
+<div class="cta-section">
+    <div class="cta-content">
+        <h2 class="subtitle-white">Transparência e Segurança em Primeiro Lugar</h2>
+        <p>Entenda como protegemos seus dados e respeitamos sua privacidade no SalesWeb.</p>
+        <a asp-controller="Home" asp-action="Privacy" class="btn-primary">Saiba Mais</a>
+    </div>
+</div>

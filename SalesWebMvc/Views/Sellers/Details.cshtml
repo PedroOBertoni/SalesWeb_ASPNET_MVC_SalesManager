@@ -1,0 +1,43 @@
+﻿@model SalesWebMvc.Models.Seller
+
+@{
+    ViewData["Title"] = "Detalhes do Vendedor"; // Título da página
+}
+
+<div class="delete-page-container">
+
+    <a asp-action="Index" class="btn-back">
+        <img src="~/images/voltar.png" alt="Voltar a Tela Anterior" />
+    </a>
+
+    <div class="details-card">
+        @* Novo container para o card de detalhes *@
+        <h2 class="seller-name-title">@Html.DisplayFor(model => model.Name)</h2> @* Nome do vendedor como H2 centralizado *@
+
+        <div class="seller-details-list">
+            @* Novo container para a lista de detalhes *@
+            <div class="detail-item">
+                <span class="detail-label">Email:</span>
+                <span class="detail-value">@Html.DisplayFor(model => model.Email)</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Data de Nascimento:</span>
+                <span class="detail-value">@Html.DisplayFor(model => model.BirthDate)</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Salário Base:</span>
+                <span class="detail-value">@Html.DisplayFor(model => model.BaseSalary)</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Departamento:</span>
+                <span class="detail-value">@Html.DisplayFor(model => model.Department.Name)</span>
+            </div>
+        </div>
+
+        <div class="details-actions">
+            @* Container para os botões de ação *@
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn-primary">Editar</a> @* Usando btn-primary para o botão de editar *@
+            <a asp-action="Index" class="btn-dark">Voltar à lista</a> @* Usando btn-dark para o botão de voltar *@
+        </div>
+    </div>
+</div>

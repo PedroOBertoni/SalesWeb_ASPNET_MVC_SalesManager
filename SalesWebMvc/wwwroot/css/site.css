@@ -1,0 +1,794 @@
+﻿/* Reset e variáveis base */
+:root {
+    --error-color: #ff4d4d; /* Vermelho vibrante */
+    --primary-color: #00e0e0; /* Ciano vibrante */
+    --bg-color: #0d0d0d; /* Quase preto */
+    --text-color: #ffffff; /* Branco puro */
+    --muted-text: #aaaaaa; /* Cinza claro */
+    --card-bg: #1a1a1a; /* Cinza bem escuro */
+    --border-color: #333333; /* Borda sutil */
+    --navbar-bg: #000000; /* Preto puro para o cabeçalho */
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--navbar-bg);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--navbar-bg);
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: normal;
+    border-bottom: 1px solid var(--text-color);
+    position: relative; /* Mantido como relative, ou pode ser fixed se você quiser que a navbar role com a página */
+    z-index: 100; /* Z-index alto para a navbar ficar acima do carrossel */
+    width: 100%; /* Garante que a navbar ocupe toda a largura */
+}
+
+    .navbar a {
+        color: var(--text-color);
+        text-decoration: none;
+        padding-right: 15px;
+        padding-left: 15px;
+        font-size: 1.1rem;
+        transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+        .navbar a:hover {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(0, 224, 224, 0.5), 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+.nav-links {
+    padding: 20px 32px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+    .nav-links a {
+        font-size: 20px;
+    }
+
+.navbar-brand {
+    padding-top: 3px;
+    padding-right: 10px;
+}
+
+.nav-contato {
+    height: 100%;
+}
+
+    .nav-contato a {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0 40px;
+        background-color: #ffffff;
+        color: #000000;
+        font-size: 20px;
+        text-decoration: none;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+        .nav-contato a:hover {
+            background-color: #00e0e0;
+            color: #000000;
+        }
+
+.nav-title {
+    font-weight: bold;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    color: var(--text-color);
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+    .dropbtn:hover {
+        color: var(--text-color);
+    }
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--navbar-bg);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    z-index: 101;
+    border: 1px solid var(--text-color);
+    border-radius: 0;
+    overflow: hidden;
+    top: 100%;
+    left: 0;
+    min-width: 180px
+}
+
+    .dropdown-content a {
+        color: var(--text-color);
+        padding: 15px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        margin: 0;
+        font-size: 1.1rem;
+        transition: background-color 0.3s ease;
+    }
+
+        .dropdown-content a:hover {
+            background-color: var(--primary-color);
+            color: var(--navbar-bg);
+        }
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.call-to-action-contact {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    padding: 60px 20px 0px 20px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 0;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+}
+
+    .call-to-action-contact .cta-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .call-to-action-contact .cta-title {
+        padding-top: 3rem; /* Pode ser removido se o padding do pai for suficiente */
+        font-size: 2.2em;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 15px;
+    }
+
+    .call-to-action-contact .cta-description {
+        font-size: 1.1em;
+        color: var(--muted-text);
+        margin-bottom: 30px;
+    }
+
+    .call-to-action-contact .cta-button {
+        display: inline-block;
+        padding: 12px 25px;
+        background-color: var(--primary-color);
+        color: var(--bg-color);
+        border: 1px solid var(--primary-color);
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+        .call-to-action-contact .cta-button:hover {
+            background-color: #00cccc;
+            border-color: #00cccc;
+            color: var(--bg-color);
+        }
+
+/* Container geral */
+.container {
+    width: 100%; /* Permite que ocupe 100% do espaço disponível */
+    max-width: 1000px; /* Limite a largura máxima para melhor legibilidade do conteúdo principal */
+    margin-left: auto; /* Centraliza o container na tela */
+    margin-right: auto; /* Centraliza o container na tela */
+    padding: 2rem; /* Mantém o padding interno */
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.title-white {
+    font-size: 3.5em;
+    color: var(--text-color);
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.title-cian {
+    font-size: 3.5em;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(0, 224, 224, 0.2);
+}
+
+.subtitle-white {
+    font-size: 2.7em;
+    color: var(--text-color);
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+p {
+    font-size: 1.2em;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    color: var(--muted-text);
+}
+
+ul {
+    margin-bottom: 1.2rem;
+    padding-left: 1.5rem;
+    list-style-type: disc;
+}
+
+li {
+    margin-bottom: 0.7rem;
+}
+
+strong {
+    font-weight: 600;
+}
+
+fieldset {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    background-color: var(--card-bg);
+}
+
+legend {
+    padding: 0 10px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+label {
+    display: block;
+    margin: 1rem 0 0.5rem;
+    color: var(--muted-text);
+}
+
+.btn-primary {
+    box-sizing: border-box;
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    padding: 12px 28px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 224, 224, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+    .btn-primary:hover {
+        background-color: #00ffff;
+        color: #000000;
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), 0 0 10px rgba(0, 224, 224, 0.4);
+        transform: translateY(-2px);
+    }
+
+.btn-dark {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+    .btn-dark:hover {
+        background-color: var(--primary-color);
+        color: var(--bg-color);
+    }
+
+.btn-back {
+    position: fixed;
+    top: 120px;
+    left: 30px;
+    z-index: 999;
+}
+
+    .btn-back img {
+        width: 50px;
+        height: auto;
+        opacity: 0.90;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+        .btn-back img:hover {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+
+input[type="date"],
+input[type="text"],
+input[type="email"], /* Adicione esta linha */
+input[type="number"], /* Adicione esta linha para o Salário Base */
+select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    width: 100%;
+    max-width: 500px;
+    transition: border 0.3s ease;
+}
+
+    input[type="date"]:focus,
+    input[type="text"]:focus,
+    input[type="email"]:focus, /* Adicione esta linha */
+    input[type="number"]:focus, /* Adicione esta linha */
+    select:focus {
+        border-color: var(--primary-color);
+        outline: none;
+    }
+
+button, input[type="submit"] {
+    margin-top: 20px;
+    box-sizing: border-box;
+    display: inline-block; /* Pode ser flex item se o pai for flex container */
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    padding: 12px 28px; /* Ajuste o padding para controlar a altura */
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 224, 224, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+    button:hover,
+    input[type="submit"]:hover {
+        background-color: #00ffff;
+        color: #000000;
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), 0 0 10px rgba(0, 224, 224, 0.4);
+        transform: translateY(-2px);
+    }
+
+footer {
+    margin-top: 3rem;
+    text-align: center;
+    color: var(--muted-text);
+    font-size: 0.9rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+}
+
+.footer-paginas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+    .footer-paginas a {
+        font-weight: normal;
+        color: var(--muted-text);
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+.footer-info a {
+    color: var(--muted-text);
+}
+
+.footer-info p {
+    color: var(--muted-text);
+    margin-bottom: 3px;
+}
+
+.copy {
+    margin-top: 3px;
+}
+
+.footer-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 1rem 1rem; /* reduzido o padding superior */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; /* menor gap entre título e conteúdo */
+    text-align: center;
+}
+
+.footer-paginas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem; /* espaço horizontal entre links */
+    justify-content: center;
+}
+
+    .footer-paginas a {
+        font-size: 0.95rem;
+        color: var(--muted-text);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+        .footer-paginas a:hover {
+            color: #cccccc; /* hover cinza claro */
+        }
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem; /* reduzido para aproximar dos links */
+}
+
+    .footer-info .social-icons {
+        display: flex;
+        flex-direction: row; /* agora os ícones estão lado a lado */
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 0.5rem; /* reduzido */
+    }
+
+        .footer-info .social-icons a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--muted-text);
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+            .footer-info .social-icons a:hover {
+                color: #cccccc;
+            }
+
+    .footer-info img {
+        height: 20px;
+        width: 20px;
+        object-fit: contain;
+        vertical-align: middle;
+    }
+
+.copy {
+    font-size: 0.85rem;
+    color: var(--muted-text);
+    margin-top: 0.8rem;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+    a:hover {
+        color: #00cccc;
+        text-decoration: none;
+    }
+
+.table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    background-color: #111;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.05);
+}
+
+    .table th,
+    .table td {
+        border: 1px solid #3a3a3a; /* cinza claro para separação */
+        padding: 12px 16px;
+        text-align: left;
+    }
+
+    .table thead th {
+        background-color: #111;
+        color: #00f7ff;
+        border-bottom: 2px solid #3a3a3a;
+    }
+
+    .table tbody tr {
+        border-bottom: 1px solid #2a2a2a;
+        transition: background 0.3s;
+    }
+
+        .table tbody tr:hover {
+            background-color: #2c2c2c;
+        }
+
+    /* Células do corpo */
+    .table td {
+        color: #fff;
+        vertical-align: middle;
+        font-size: 15px;
+    }
+
+        /* Estilo dos ícones de ação */
+        .table td a img {
+            filter: brightness(0) saturate(100%) invert(66%) sepia(50%) saturate(1425%) hue-rotate(150deg);
+            transition: transform 0.2s ease;
+        }
+
+            .table td a img:hover {
+                transform: scale(1.15);
+            }
+
+    /* Linhas do corpo */
+    .table tbody tr {
+        border-bottom: 1px solid #2a2a2a;
+        transition: background 0.3s;
+    }
+
+        .table tbody tr:hover {
+            background-color: #2c2c2c;
+        }
+
+    /* Estilização dinâmica de status no TD */
+    .table td.status-cancelada {
+        background-color: rgba(255, 77, 77, 0.12);
+        color: #ff4d4d;
+        border-left: 3px solid #ff4d4d;
+        font-weight: bold;
+    }
+
+    .table td.status-pendente {
+        background-color: rgba(255, 215, 0, 0.10);
+        color: #ffd700;
+        border-left: 3px solid #ffd700;
+        font-weight: bold;
+    }
+
+    .table td.status-finalizada {
+        background-color: rgba(0, 255, 180, 0.12);
+        color: #00ffb4;
+        border-left: 3px solid #00ffb4;
+        font-weight: bold;
+    }
+
+
+.table-responsive {
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+}
+
+
+
+/* --- Estilos para a tela de Deletar (Delete.cshtml) --- */
+
+.delete-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente o conteúdo */
+    padding-top: 40px; /* Espaço do topo, abaixo da navbar */
+    min-height: calc(100vh - 90px - 200px); /* Ajusta altura para o footer não subir, 90px da navbar, 200px estimado do footer e cta */
+}
+
+    .delete-page-container h2 {
+        margin-bottom: 30px; /* Mais espaço para o título principal */
+    }
+
+.delete-confirmation-card {
+    background-color: var(--card-bg); /* Fundo escuro do card */
+    padding: 40px; /* Mais padding interno */
+    border-radius: 12px; /* Cantos arredondados */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); /* Sombra mais pronunciada */
+    text-align: center; /* Centraliza o texto dentro do card */
+    max-width: 500px; /* Largura máxima para o card não ficar muito largo */
+    width: 90%; /* Ocupa 90% da largura disponível, mas respeita o max-width */
+    margin: 0 auto 50px auto; /* Centraliza e adiciona margem inferior */
+    border: 1px solid var(--border-color); /* Borda sutil */
+}
+
+    .delete-confirmation-card h3 {
+        font-size: 1.8em; /* Aumenta o tamanho da pergunta de confirmação */
+        color: var(--primary-color); /* Pergunta em ciano */
+        margin-bottom: 30px; /* Espaço abaixo da pergunta */
+    }
+
+.delete-details {
+    margin-bottom: 30px; /* Espaço abaixo dos detalhes do item */
+    padding: 15px 0;
+    border-top: 1px solid var(--border-color); /* Separador visual */
+    border-bottom: 1px solid var(--border-color); /* Separador visual */
+}
+
+    .delete-details dl {
+        display: flex;
+        flex-direction: column; /* Coloca dt e dd em linhas separadas */
+        align-items: center; /* Centraliza dt e dd */
+        margin: 0; /* Remove margem padrão da dl */
+    }
+
+    .delete-details dt {
+        font-weight: 600; /* Negrito para o "Nome:" */
+        color: var(--muted-text); /* Cor para "Nome:" */
+        font-size: 1.1em;
+        margin-bottom: 5px; /* Espaço entre "Nome:" e o valor */
+    }
+
+    .delete-details dd {
+        font-size: 1.6em; /* Aumenta o tamanho do nome do item */
+        color: var(--text-color); /* Cor para o valor */
+        margin-left: 0; /* Remove margem padrão da dd */
+    }
+
+.delete-form {
+    display: flex;
+    justify-content: center; /* Centraliza os botões */
+    gap: 20px; /* Espaço entre os botões */
+    margin-top: 30px; /* Espaço acima dos botões, definido aqui para ambos */
+    align-items: center; /* Alinha os itens verticalmente no centro */
+}
+
+    .delete-form .btn-delete-confirm {
+        width: 140px;
+        /* Remover height fixo e usar padding para consistência com o link, ou aplicar em ambos */
+        /* height: 60px; */ /* Removido para usar padding, ou garantir que 'btn-cancel' também tenha */
+        padding: 14px 0; /* Padding vertical para definir altura */
+        background-color: #dc3545 !important; /* Vermelho forte */
+        color: #ffffff !important; /* Texto branco */
+        /* box-shadow original (não no hover) */
+        box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
+        border-radius: 10px; /* Consistente com btn-cancel */
+        text-align: center;
+        font-size: 1.1em; /* Consistente com btn-cancel */
+        font-weight: bold; /* Consistente com btn-cancel */
+        transition: all 0.3s ease;
+    }
+
+        .delete-form .btn-delete-confirm:hover {
+            background-color: #c82333 !important; /* Vermelho mais escuro no hover */
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 0 0 10px rgba(220, 53, 69, 0.4); /* Sombra mais intensa no hover */
+            transform: translateY(-2px); /* Mantém o efeito de levantamento */
+        }
+
+    .delete-form .btn-cancel {
+        margin-top: 20px;
+        width: 140px;
+        /* Remover height fixo e usar padding para consistência com o input, ou aplicar em ambos */
+        /* height: 60px; */ /* Removido para usar padding, ou garantir que 'btn-delete-confirm' também tenha */
+        padding: 14px 0; /* Padding vertical para definir altura */
+        background-color: var(--card-bg);
+        color: var(--muted-text);
+        font-size: 1.1em;
+        font-weight: bold;
+        border: 1px solid var(--muted-text);
+        border-radius: 10px;
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: flex; /* Adicionado para que o texto possa ser centralizado com align-items/justify-content */
+        align-items: center; /* Centraliza o texto verticalmente */
+        justify-content: center; /* Centraliza o texto horizontalmente */
+    }
+
+        .delete-form .btn-cancel:hover {
+            background-color: var(--muted-text);
+            color: var(--bg-color);
+            transform: translateY(-2px);
+        }
+
+/* Estilos específicos para a página de Detalhes do Vendedor */
+
+.details-card {
+    background-color: var(--card-bg); /* Fundo escuro do card */
+    padding: 40px; /* Mais padding interno */
+    border-radius: 12px; /* Cantos arredondados */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); /* Sombra mais pronunciada */
+    text-align: center; /* Centraliza o texto dentro do card, incluindo o h2 */
+    max-width: 600px; /* Largura máxima para o card não ficar muito largo */
+    width: 90%; /* Ocupa 90% da largura disponível, mas respeita o max-width */
+    margin: 0 auto 50px auto; /* Centraliza e adiciona margem inferior */
+    border: 1px solid var(--border-color); /* Borda sutil */
+}
+
+.seller-name-title {
+    font-size: 2.5em; /* Tamanho maior para o nome do vendedor */
+    color: var(--primary-color); /* Cor ciano */
+    font-weight: 700;
+    margin-bottom: 30px; /* Espaço abaixo do nome */
+    text-shadow: 0 0 10px rgba(0, 224, 224, 0.2);
+}
+
+.seller-details-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaço entre cada item de detalhe */
+    margin-bottom: 40px; /* Espaço abaixo da lista de detalhes e antes dos botões */
+    text-align: left; /* Alinha o texto dos detalhes à esquerda dentro da lista */
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between; /* Espaça label e valor */
+    align-items: baseline; /* Alinha pela base do texto */
+    padding-bottom: 10px; /* Espaço abaixo de cada item */
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1); /* Linha tracejada sutil */
+}
+
+    .detail-item:last-child {
+        border-bottom: none; /* Remove a borda do último item */
+    }
+
+.detail-label {
+    font-weight: 600; /* Negrito para os rótulos (Nome:, Email:, etc.) */
+    color: var(--muted-text); /* Cor para os rótulos */
+    font-size: 1.1em;
+    flex-basis: 40%; /* Dá um pouco mais de espaço para o label */
+    text-align: left;
+}
+
+.detail-value {
+    font-size: 1.2em; /* Tamanho maior para os valores (o dado em si) */
+    color: var(--text-color); /* Cor branca para os valores */
+    flex-basis: 60%; /* Dá mais espaço para o valor */
+    text-align: right; /* Alinha o valor à direita */
+}
+
+.details-actions {
+    display: flex;
+    justify-content: center; /* Centraliza os botões */
+    gap: 20px; /* Espaço entre os botões */
+    margin-top: 30px; /* Espaço acima dos botões */
+}
+
+
+
+.validation-summary-errors ul, .field-validation-error {
+    color: #ff4d4d;
+    background-color: #2c2c2c;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ff4d4d;
+    list-style: none;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+    .validation-summary-errors ul li {
+        margin-bottom: 5px;
+    }
+
+input.input-validation-error, select.input-validation-error {
+    border-color: #ff4d4d !important;
+    background-color: #1a1a1a;
+    color: #fff;
+}

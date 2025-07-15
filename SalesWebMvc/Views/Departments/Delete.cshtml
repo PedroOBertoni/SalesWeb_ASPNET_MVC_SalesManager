@@ -1,0 +1,33 @@
+﻿@model SalesWebMvc.Models.Department
+
+@{
+    ViewData["Title"] = "Deletar";
+}
+
+<div class="delete-page-container">
+
+    <a asp-action="Index" class="btn-back">
+        <img src="~/images/voltar.png" alt="Voltar a Tela Anterior" />
+    </a>
+
+    <div class="delete-confirmation-card">
+        <h3>Tem certeza que quer deletar?</h3>
+
+        <div class="delete-details">
+            <dl class="dl-horizontal">
+                <dt>
+                    Nome:
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+            </dl>
+        </div>
+
+        <form asp-action="Delete" method="post" asp-anti-forgery="true" class="delete-form">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Deletar" class="btn-delete-confirm" />
+            <a asp-action="Index" class="btn-cancel">Cancelar</a>
+        </form>
+    </div>
+</div>

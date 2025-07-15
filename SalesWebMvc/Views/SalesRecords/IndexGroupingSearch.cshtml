@@ -1,0 +1,141 @@
+﻿@using SalesWebMvc.Models
+
+@model IEnumerable<IGrouping<Department, SalesRecord>>
+
+@{
+	ViewData["Title"] = "Busca por Departamento";
+	// Utilize TempData para pré-popular os campos após um redirecionamento com erro
+	DateTime minDateValue = DateTime.TryParse(TempData["MinDate"] as string, out var parsedMinDate)
+	? parsedMinDate
+	: DateTime.Now.AddYears(-1); // Valor padrão, altere se quiser outro
+
+	DateTime maxDateValue = DateTime.TryParse(TempData["MaxDate"] as string, out var parsedMaxDate)
+	? parsedMaxDate
+	: DateTime.Now;
+}
+
+@section ExtraStyles {
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
+	<link rel="stylesheet" href="~/css/search.css" />
+}
+
+<div class="search-container">
+	<div class="form-box">
+		<form id="searchForm" asp-action="GroupingSearch">
+			<h2 class="title-white">Busca por Departamento</h2>
+
+			<div class="form-group">
+				<label for="minDate" class="control-label">Data Inicial:</label>
+				<div class="input-wrapper">
+					<input type="text" id="minDate" name="minDate" class="date-input" placeholder="dd/mm/aaaa" />
+					<span class="calendar-icon" data-target="minDate"></span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="maxDate" class="control-label">Data Final:</label>
+				<div class="input-wrapper">
+					<input type="text" id="maxDate" name="maxDate" class="date-input" placeholder="dd/mm/aaaa" />
+					<span class="calendar-icon" data-target="maxDate"></span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<button class="btn-primary" type="submit">Buscar</button>
+			</div>
+
+			<div id="dateError" class="error-msg"></div>
+		</form>
+	</div>
+
+	<div class="lateral-image">
+		<img src="~/images/imageBusca.jpeg" alt="Imagem de Busca" />
+	</div>
+</div>
+
+@section Scripts {
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+	<script>
+		$(function () {
+			$('#minDate, #maxDate').mask('00/00/0000');
+
+			$('#minDate, #maxDate').datepicker({
+				dateFormat: 'dd/mm/yy',
+				showOn: 'focus',
+				changeMonth: true,
+				changeYear: true
+			});
+
+			$('.calendar-icon').on('click', function () {
+				const target = $(this).data('target');
+				$('#' + target).focus(); // abre o datepicker
+			});
+
+			$('#searchForm').on('submit', async function (e) {
+				e.preventDefault();
+
+				const min = $('#minDate').val();
+				const max = $('#maxDate').val();
+				const errorDiv = $('#dateError');
+				errorDiv.hide().text('');
+
+				if (!min || !max) {
+					errorDiv.text('Preencha ambas as datas.').show();
+					return;
+				}
+
+				const parseDate = (str) => {
+					const [d, m, y] = str.split('/');
+					return new Date(`${y}-${m}-${d}`);
+				};
+
+				const minDateParsed = parseDate(min);
+				const maxDateParsed = parseDate(max);
+				const today = new Date();
+				today.setHours(0, 0, 0, 0);
+
+				if (minDateParsed > today) {
+					errorDiv.text('A data inicial não pode ser no futuro.').show();
+					return;
+				}
+
+				if (maxDateParsed > today) {
+					errorDiv.text('A data final não pode ser no futuro.').show();
+					return;
+				}
+
+				if (minDateParsed > maxDateParsed) {
+					errorDiv.text('A data final não pode ser anterior à inicial.').show();
+					return;
+				}
+
+				try {
+					const formattedMinDate = minDateParsed.toISOString().split('T')[0];
+					const formattedMaxDate = maxDateParsed.toISOString().split('T')[0];
+
+					// ✅ Corrigido para verificar usando CheckGroupedRecords
+					const response = await fetch(`@Url.Action("CheckGroupedRecords", "SalesRecords")?minDate=${formattedMinDate}&maxDate=${formattedMaxDate}`);
+
+					if (!response.ok) {
+						throw new Error(`HTTP error! status: ${response.status}`);
+					}
+
+					const json = await response.json();
+
+					if (!json.success) {
+						errorDiv.text('Nenhuma venda foi registrada nesse período.').show();
+					} else {
+						this.submit(); // Agora vai submeter o form corretamente
+					}
+				} catch (error) {
+					console.error('Erro ao verificar registros:', error);
+					errorDiv.text('Erro ao verificar registros. Por favor, tente novamente.').show();
+				}
+			});
+		});
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+}

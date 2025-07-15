@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Sobre Mim";
+}
+
+@section ExtraStyles {
+    <link rel="stylesheet" href="~/css/about.css" />
+}
+
+<div class="about-hero">
+    <div class="hero-content">
+        <h1 class="title-cian">@ViewData["Title"]</h1>
+        <p class="hero-description">
+            Meu nome é Pedro Bertoni, sou desenvolvedor de software com foco em aplicações web e backend. Tenho paixão por aprender novas tecnologias, criar soluções eficientes e transformar ideias em produtos funcionais.
+        </p>
+    </div>
+</div>
+
+<div class="container about-page-content">
+    <section class="about-section card full-width">
+        <h2 class="section-title-highlight">Minha Jornada</h2>
+        <p>
+            Minha trajetória na programação começou com a curiosidade de entender como sites e aplicativos funcionavam. Desde então, tenho estudado e desenvolvido projetos com foco em <strong>ASP.NET Core</strong>, <strong>C#</strong> e <strong>desenvolvimento web moderno</strong>.
+        </p>
+        <p>
+            Atualmente estou aprofundando meus conhecimentos em áreas como <strong>arquitetura de software</strong>, <strong>bancos de dados relacionais</strong> e <strong>boas práticas de desenvolvimento</strong>, como SOLID, separação de responsabilidades e testes.
+        </p>
+    </section>
+
+    <section class="about-section card">
+        <h2 class="section-title-highlight">Por Que Criei o SalesWeb</h2>
+        <p>
+            O <strong>SalesWeb</strong> foi desenvolvido como um projeto pessoal com fins didáticos e como parte do meu portfólio. Quis criar um sistema completo, com funcionalidades reais e estrutura sólida, aplicando aquilo que estudei na prática.
+        </p>
+    </section>
+
+    <section class="about-section card">
+        <h2 class="section-title-highlight">Fora do Código</h2>
+        <p>
+            Quando não estou programando, gosto de explorar novas ideias, consumir conteúdo sobre tecnologia e produtividade, jogar e, principalmente, aprender coisas novas — porque acredito que ser um bom dev vai muito além da linguagem de programação.
+        </p>
+    </section>
+
+    <section class="about-section card full-width">
+        <h2 class="section-title-highlight">Habilidades Técnicas</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Linguagens</h3>
+                <ul>
+                    <li>C#</li>
+                    <li>JavaScript</li>
+                    <li>SQL</li>
+                    <li>HTML/CSS</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Frameworks</h3>
+                <ul>
+                    <li>ASP.NET Core</li>
+                    <li>Entity Framework Core</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Ferramentas</h3>
+                <ul>
+                    <li>Visual Studio</li>
+                    <li>Git</li>
+                    <li>GitHub</li>
+                    <li>MVC</li>
+                    <li>REST</li>
+                    <li>LINQ</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Banco de Dados</h3>
+                <ul>
+                    <li>SQL Server</li>
+                    <li>MySQL</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>

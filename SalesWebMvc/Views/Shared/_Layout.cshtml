@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - SalesWeb</title>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+	<environment include="Development">
+		<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	</environment>
+	<environment exclude="Development">
+		<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	</environment>
+
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+	@RenderSection("ExtraStyles", required: false)
+
+</head>
+<body class="@(ViewData["BodyClass"] ?? "")">
+	<nav class="navbar">
+		<div class="nav-links">
+			<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+				<img src="~/images/logo.png" height="40px" alt="SalesWeb" />
+			</a>
+			<a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+			<a asp-area="" asp-controller="Departments" asp-action="Index">Departamentos</a>
+			<a asp-area="" asp-controller="Sellers" asp-action="Index">Vendedores</a>
+
+			<div class="dropdown">
+				<a href="#" class="dropbtn">Registro de Vendas</a>
+				<div class="dropdown-content">
+					<a asp-area="" asp-controller="SalesRecords" asp-action="IndexSimpleSearch">Busca Simples</a>
+					<a asp-area="" asp-controller="SalesRecords" asp-action="IndexGroupingSearch">Busca por Departamento</a>
+					<a asp-area="" asp-controller="SalesRecords" asp-action="Create">Registrar Venda</a>
+				</div>
+			</div>
+			<div class="dropdown">
+				<a href="#" class="dropbtn">Sobre</a>
+				<div class="dropdown-content">
+					<a asp-area="" asp-controller="Home" asp-action="About">Sobre Mim</a>
+					<a asp-area="" asp-controller="Home" asp-action="AboutProject">Sobre o Projeto</a>
+				</div>
+			</div>
+
+			<a asp-area="" asp-controller="Home" asp-action="Privacy">Política de Privacidade</a>
+		</div>
+		<div class="nav-contato">
+			<a asp-area="" asp-controller="Home" asp-action="Contact">Contato</a>
+		</div>
+	</nav>
+
+	<partial name="_CookieConsentPartial" />
+
+	@* MOVIDO O @RenderBody() PARA FORA DO DIV.CONTAINER SE O BODYCLASS FOR 'home-page' *@
+	@if (ViewData["BodyClass"] != null && ViewData["BodyClass"].ToString() == "home-page")
+	{
+		@RenderBody()
+	}
+	else
+	{
+		<div class="container">
+			<main role="main" class="pb-3">
+				@RenderBody()
+			</main>
+		</div>
+	}
+
+	@* AJUSTE CRUCIAL AQUI: Adicionado 'ViewData["Title"] != "Erro na Operação"' para ocultar este rodapé na página de erro *@
+	@if (ViewData["Title"] != "Contato" && ViewData["Title"] != "Erro na Operação")
+	{
+		<div class="call-to-action-contact">
+			<div class="cta-content">
+				<h2 class="cta-title">Curtiu o que viu? Vamos conversar!</h2>
+				<p class="cta-description">
+					Se o meu trabalho chamou sua atenção, aproveite para dar uma olhada nas minhas redes sociais e conhecer mais sobre mim.
+					Estou sempre em busca de novos projetos, boas conversas e oportunidades.
+				</p>
+				<a href="/Home/Contact" class="btn-dark">Entre em Contato</a>
+			</div>
+
+			<footer class="main-footer">
+				<div class="footer-container">
+					<p><strong>Páginas do Site</strong></p>
+					<div class="footer-paginas">
+						<a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+						<a asp-area="" asp-controller="Departments" asp-action="Index">Departamentos</a>
+						<a asp-area="" asp-controller="Sellers" asp-action="Index">Vendedores</a>
+						<a asp-area="" asp-controller="SalesRecords" asp-action="IndexSimpleSearch">Busca Simples</a>
+						<a asp-area="" asp-controller="SalesRecords" asp-action="IndexGroupingSearch">Busca por Departamento</a>
+						<a asp-area="" asp-controller="Home" asp-action="About">Sobre Nós</a>
+						<a asp-area="" asp-controller="Home" asp-action="Contact">Contato</a>
+						<a asp-area="" asp-controller="Home" asp-action="Privacy">Política de Privacidade</a>
+					</div>
+					<div class="footer-info">
+						<div class="social-icons">
+							<a>(16) 99417-1005</a>
+							<a>pedroolivbertoni@gmail.com</a>
+							<a href="https://www.linkedin.com/in/pedro-bertoni/" target="_blank"><img src="~/images/linkedin-cinza.svg" alt="Linkedin" height="20px" /></a>
+							<a href="https://github.com/PedroOBertoni" target="_blank"><img src="~/images/github-cinza.svg" alt="GitHub" height="20px" /></a>
+						</div>
+						<p class="copy">&copy; @DateTime.Now.Year SalesWeb. Todos os direitos reservados.</p>
+					</div>
+				</div>
+			</footer>
+		</div>
+	}
+	else if (ViewData["Title"] == "Contato")
+	{
+		<footer class="main-footer">
+			<div class="footer-container">
+				<p><strong>Páginas do Site</strong></p>
+				<div class="footer-paginas">
+					<a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+					<a asp-area="" asp-controller="Departments" asp-action="Index">Departamentos</a>
+					<a asp-area="" asp-controller="Sellers" asp-action="Index">Vendedores</a>
+					<a asp-area="" asp-controller="SalesRecords" asp-action="IndexSimpleSearch">Busca Simples</a>
+					<a asp-area="" asp-controller="SalesRecords" asp-action="IndexGroupingSearch">Busca por Departamento</a>
+					<a asp-area="" asp-controller="Home" asp-action="About">Sobre Nós</a>
+					<a asp-area="" asp-controller="Home" asp-action="Contact">Contato</a>
+					<a asp-area="" asp-controller="Home" asp-action="Privacy">Política de Privacidade</a>
+				</div>
+				<div class="footer-info">
+					<div class="social-icons">
+						<a>(16) 99417-1005</a>
+						<a>pedroolivbertoni@gmail.com</a>
+						<a href="https://www.linkedin.com/in/pedro-bertoni/" target="_blank"><img src="~/images/linkedin-cinza.svg" alt="Linkedin" height="20px" /></a>
+						<a href="https://github.com/PedroOBertoni" target="_blank"><img src="~/images/github-cinza.svg" alt="GitHub" height="20px" /></a>
+					</div>
+					<p class="copy">&copy; @DateTime.Now.Year SalesWeb. Todos os direitos reservados.</p>
+				</div>
+			</div>
+		</footer>
+	}
+
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	<script src="~/js/search.js"></script>
+
+	@RenderSection("Scripts", required: false)
+	@RenderSection("ExtraScripts", required: false)
+
+</body>
+</html>

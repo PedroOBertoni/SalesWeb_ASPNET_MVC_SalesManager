@@ -1,0 +1,206 @@
+﻿:root {
+    --primary-color: #00e0e0; /* Ciano vibrante */
+    --bg-color: #0d0d0d; /* Quase preto */
+    --text-color: #ffffff; /* Branco puro */
+    --muted-text: #aaaaaa; /* Cinza claro */
+    --card-bg: #1a1a1a; /* Cinza bem escuro */
+    --border-color: #333333; /* Borda sutil */
+    --navbar-bg: #000000; /* Preto puro para o cabeçalho */
+}
+
+body {
+    overflow-x: hidden; /* Garante que nunca role lateralmente */
+}
+
+/* Estilos do Carrossel */
+.carousel-wrapper {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.carousel-container {
+    width: 100%;
+    height: 700px;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+    .carousel-container p {
+        color: var(--text-color);
+    }
+
+.carousel-slide {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .carousel-slide::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 1;
+    }
+
+    .carousel-slide.active {
+        opacity: 1;
+        z-index: 2;
+    }
+
+.carousel-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 2;
+    position: relative;
+}
+
+.carousel-text {
+    color: var(--text-color);
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+    .carousel-text .btn-primary {
+        min-width: 200px;
+        font-size: 1.1em;
+        padding: 12px 28px;
+        border-radius: 12px;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .carousel-text h1 {
+        margin-bottom: 20px;
+    }
+
+    .carousel-text p {
+        font-size: 1.3em;
+        margin-bottom: 30px;
+    }
+
+.main-content-container {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: var(--navbar-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+.feature-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
+    padding: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    flex: 1 1 280px;
+    max-width: calc(25% - 25px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .feature-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+    }
+
+.feature-icon {
+    color: var(--primary-color);
+    font-size: 4em;
+    margin-bottom: 25px;
+}
+
+.feature-card .card-title {
+    color: var(--text-color);
+    font-size: 1.7em;
+    margin-bottom: 15px;
+}
+
+.feature-card .card-text {
+    color: var(--muted-text);
+    font-size: 1.1em;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+.info-section,
+.cta-section {
+    background-color: var(--navbar-bg);
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.info-content-flex,
+.info-content-flex-reverse {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.info-text {
+    flex: 1 1 400px;
+    text-align: left;
+}
+
+.info-image {
+    flex: 1 1 300px;
+    display: flex;
+    justify-content: center;
+}
+
+    .info-image img {
+        max-width: 100% !important;
+        max-height: 400px !important;
+        height: auto !important;
+        object-fit: cover !important;
+        border-radius: 12px !important;
+        box-shadow: 0 0 12px rgba(0, 255, 255, 0.3) !important;
+    }
+

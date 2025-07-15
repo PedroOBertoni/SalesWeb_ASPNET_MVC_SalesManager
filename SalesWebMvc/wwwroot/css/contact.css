@@ -1,0 +1,126 @@
+﻿:root {
+    --primary-color: #00e0e0; /* Ciano vibrante */
+    --bg-color: #0d0d0d; /* Quase preto */
+    --text-color: #ffffff; /* Branco puro */
+    --muted-text: #aaaaaa; /* Cinza claro */
+    --card-bg: #1a1a1a; /* Cinza bem escuro */
+    --border-color: #333333; /* Borda sutil */
+    --navbar-bg: #000000; /* Preto puro para o cabeçalho */
+}
+
+.contact-hero {
+    background-color: var(--navbar-bg);
+    padding: 60px 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.contact-title {
+    font-size: 3.5em;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(0, 224, 224, 0.2);
+}
+
+.contact-container {
+    text-align: center;
+}
+
+.contact-subtitle {
+    font-size: 2.0em;
+    color: var(--text-color);
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.contact-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.contact-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: var(--text-color);
+    border: none;
+    white-space: nowrap;
+    min-width: 220px;
+    height: 70px;
+}
+
+    .contact-btn:hover {
+        transform: translateY(-4px);
+    }
+
+    /* Tamanho dos ícones */
+    .contact-btn i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .contact-btn img {
+        height: 40px;
+        width: 40px;
+    }
+
+    /* Botões apenas com ícone */
+    .contact-btn.icon-only {
+        width: 70px;
+        height: 70px;
+        padding: 0;
+        min-width: unset;
+    }
+
+    /* Cores específicas e sombras */
+    .contact-btn.github {
+        background-color: #f0f0f0; /* branco suave */
+    }
+
+        .contact-btn.github:hover {
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+        }
+
+    .contact-btn.linkedin {
+        background-color: #0288d1;
+    }
+
+        .contact-btn.linkedin:hover {
+            box-shadow: 0 0 12px rgba(0, 119, 181, 0.7);
+        }
+
+    .contact-btn.email {
+        background-color: var(--primary-color);
+        color: var(--bg-color);
+    }
+
+        .contact-btn.email:hover {
+            box-shadow: 0 0 12px rgba(0, 224, 224, 0.7);
+        }
+
+    .contact-btn.whatsapp {
+        background-color: #25d366;
+        color: #f4fff9;
+    }
+
+        .contact-btn.whatsapp:hover {
+            box-shadow: 0 0 12px rgba(37, 211, 102, 0.7);
+        }
+
+/* Corrige ícones menores */
+.small-icon {
+    height: 50px;
+    width: 50px;
+}

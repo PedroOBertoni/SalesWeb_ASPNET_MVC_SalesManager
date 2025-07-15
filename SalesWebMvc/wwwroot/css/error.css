@@ -1,0 +1,121 @@
+﻿/* --- Estilos para a Página de Erro (Error.cshtml) --- */
+.error-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 120px - 200px);
+    padding: 20px;
+    background-color: var(--navbar-bg);
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    color: var(--text-color);
+    max-width: 600px;
+    width: 100%;
+    margin: 50px auto;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+    .error-container h1.text-danger {
+        color: #ff4d4d;
+        font-size: 2.8em;
+        margin-bottom: 20px;
+        font-weight: bold;
+        text-shadow: 0 0 15px rgba(255, 77, 77, 0.6);
+    }
+
+    .error-container h2.text-danger {
+        color: var(--text-color);
+        font-size: 1.3em;
+        line-height: 1.6;
+        margin-bottom: 25px;
+        font-weight: normal;
+    }
+
+    .error-container p strong {
+        color: #ff4d4d;
+        font-weight: 600;
+    }
+
+    .error-container p code {
+        background-color: #331a1a;
+        padding: 8px 12px;
+        border-radius: 5px;
+        font-family: 'Courier New', Courier, monospace;
+        color: #fff;
+        display: inline-block;
+        margin-top: 8px;
+        border: 1px solid rgba(255, 77, 77, 0.3);
+    }
+
+.error-actions {
+    margin-top: 35px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+    .error-actions a.btn-primary {
+        background-color: #ff4d4d !important;
+        color: white !important;
+        border: none;
+        padding: 14px 30px;
+        font-size: 1.15em;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: bold;
+        box-shadow: 0 6px 15px rgba(255, 77, 77, 0.4);
+        transition: all 0.3s ease;
+        min-width: 240px;
+        box-sizing: border-box;
+    }
+
+        .error-actions a.btn-primary:hover {
+            background-color: #cc0000 !important;
+            box-shadow: 0 0 25px rgba(255, 77, 77, 0.8), 0 0 15px rgba(255, 0, 0, 0.6);
+            transform: translateY(-3px);
+        }
+
+    .error-actions a.btn-info {
+        background-color: var(--card-bg);
+        color: var(--muted-text);
+        border: 1px solid var(--muted-text);
+        padding: 14px 30px;
+        font-size: 1.15em;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: bold;
+        box-shadow: none;
+        transition: all 0.3s ease;
+        min-width: 240px;
+        box-sizing: border-box;
+    }
+
+        .error-actions a.btn-info:hover {
+            background-color: var(--muted-text);
+            color: var(--bg-color);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+    .error-actions a:not(.btn-primary):not(.btn-info) {
+        background-color: transparent;
+        color: var(--muted-text);
+        border: 1px solid var(--border-color);
+        padding: 12px 25px;
+        font-size: 1em;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: normal;
+        transition: all 0.3s ease;
+    }
+
+        .error-actions a:not(.btn-primary):not(.btn-info):hover {
+            background-color: var(--border-color);
+            color: var(--text-color);
+            transform: translateY(-2px);
+        }

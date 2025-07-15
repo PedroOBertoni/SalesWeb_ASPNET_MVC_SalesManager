@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Sobre o Projeto";
+}
+
+@section ExtraStyles {
+    <link rel="stylesheet" href="~/css/about.css" />
+}
+
+<div class="about-hero">
+    <div class="hero-content">
+        <h1 class="title-cian">Sobre o Projeto SalesWeb</h1>
+        <p>
+            O <strong>SalesWeb</strong> é um projeto de estudo e demonstração prática desenvolvido com o objetivo de aplicar os princípios da arquitetura <strong>MVC (Model-View-Controller)</strong> utilizando a stack <strong>ASP.NET Core</strong>, com persistência de dados via <strong>Entity Framework Core</strong> e banco de dados relacional.
+        </p>
+        <p>
+            O projeto foi desenvolvido no <strong>Visual Studio Community 2022</strong> e faz parte de uma iniciativa pessoal de aprimoramento profissional e acadêmico, servindo também como peça de portfólio.
+        </p>
+    </div>
+</div>
+
+<div class="container about-page-content">
+    <section class="about-section card full-width">
+        <h2 class="section-title-highlight">Tecnologias Utilizadas</h2>
+        <ul>
+            <li><strong>ASP.NET Core MVC:</strong> Estrutura principal da aplicação, com separação de responsabilidades entre controle de lógica, visualização e acesso a dados.</li>
+            <li><strong>C#:</strong> Linguagem de backend utilizada para a modelagem de entidades, lógica de negócio, controllers e integração com o banco.</li>
+            <li><strong>Entity Framework Core:</strong> ORM (Object-Relational Mapping) utilizado para mapear as classes C# para o banco de dados e realizar operações CRUD.</li>
+            <li><strong>Razor Pages:</strong> Motor de renderização das views (.cshtml) com integração direta com os dados do controller.</li>
+            <li><strong>Bootstrap (customizado):</strong> Para organização visual básica com ajustes manuais para seguir um tema escuro.</li>
+        </ul>
+    </section>
+
+    <section class="about-section card full-width">
+        <h2 class="section-title-highlight">Funcionalidades Desenvolvidas</h2>
+        <ul>
+            <li><strong>Departamentos:</strong> CRUD completo (Create, Read, Update, Delete) de departamentos de vendas, com validação de dados e listagem dinâmica.</li>
+            <li><strong>Vendedores:</strong> Cadastro completo de vendedores vinculados a departamentos, com campos como nome, e-mail, data de nascimento e salário base.</li>
+            <li><strong>Registro de Vendas:</strong> Lançamento de vendas por vendedor, com valor e data. Visualização com filtros por período e agrupamento por departamento.</li>
+            <li><strong>Busca Simples e Agrupada:</strong> Filtros de datas usando formulários interativos, com lógicas distintas para visualização individual ou agrupada.</li>
+            <li><strong>Seed Data:</strong> População inicial automática do banco com registros de teste, usando o método <code>DbInitializer.Seed()</code>.</li>
+            <li><strong>Tratamento de erros:</strong> Rotas de erro personalizadas, com exibição de mensagens amigáveis e controle de exceções genéricas.</li>
+            <li><strong>Responsividade e acessibilidade:</strong> Layout escuro, contrastante, com foco em legibilidade e navegação fluida.</li>
+        </ul>
+    </section>
+</div>

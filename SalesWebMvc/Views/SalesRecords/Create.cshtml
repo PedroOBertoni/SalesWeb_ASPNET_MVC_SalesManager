@@ -1,0 +1,61 @@
+﻿@using SalesWebMvc.Models.Enums
+@model SalesRecordFormViewModel
+
+@{
+    ViewData["Title"] = "Registrar Nova Venda";
+}
+
+@section ExtraStyles {
+    <link rel="stylesheet" href="~/css/about.css" />
+}
+
+<h2 class="title-cian">@ViewData["Title"]</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<form asp-action="Create" method="post">
+    <input type="hidden" asp-for="SalesRecord.Id" value="0" />
+
+    <div class="form-group">
+        <label asp-for="SalesRecord.SellerId"></label>
+        <select asp-for="SalesRecord.SellerId" asp-items="@(new SelectList(Model.Sellers, "Id", "Name"))" class="form-control">
+            <option value="">Selecione o vendedor</option>
+        </select>
+        <span asp-validation-for="SalesRecord.SellerId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SalesRecord.Amount"></label>
+        <input asp-for="SalesRecord.Amount" class="form-control" />
+        <span asp-validation-for="SalesRecord.Amount" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SalesRecord.Date"></label>
+        <input asp-for="SalesRecord.Date" class="form-control" type="date" />
+        <span asp-validation-for="SalesRecord.Date" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SalesRecord.Status"></label>
+        <select asp-for="SalesRecord.Status" class="form-control"
+                asp-items="Html.GetEnumSelectList<SaleStatus>()">
+            <option value="">Selecione o status</option>
+        </select>
+        <span asp-validation-for="SalesRecord.Status" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Registrar Venda</button>
+</form>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

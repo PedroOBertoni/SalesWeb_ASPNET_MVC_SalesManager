@@ -1,0 +1,84 @@
+﻿@model IEnumerable<SalesWebMvc.Models.SalesRecord>
+
+@{
+    ViewData["Title"] = "Busca Simples";
+    DateTime minDate = DateTime.TryParse(ViewData["minDate"] as string, out var parsedMinDate)
+        ? parsedMinDate
+        : DateTime.Now.AddYears(-1);
+
+    DateTime maxDate = DateTime.TryParse(ViewData["maxDate"] as string, out var parsedMaxDate)
+        ? parsedMaxDate
+        : DateTime.Now;
+}
+
+@section ExtraStyles {
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="~/css/search.css" />
+    <style>
+        .ui-datepicker {
+            z-index: 9999 !important;
+        }
+    </style>
+}
+
+<div class="search-container">
+    <div class="form-box">
+        <form id="searchForm" asp-action="SimpleSearch">
+            <h2 class="title-white">@ViewData["Title"]</h2>
+
+            <div class="form-group">
+                <label for="minDate" class="control-label">Data Inicial:</label>
+                <div class="input-wrapper">
+                    <input type="text" id="minDate" name="minDate" class="date-input" placeholder="dd/mm/aaaa" />
+                    <span class="calendar-icon" data-target="minDate"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="maxDate" class="control-label">Data Final:</label>
+                <div class="input-wrapper">
+                    <input type="text" id="maxDate" name="maxDate" class="date-input" placeholder="dd/mm/aaaa" />
+                    <span class="calendar-icon" data-target="maxDate"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button class="btn-primary" type="submit">Buscar</button>
+            </div>
+
+            <div id="dateError" class="error-msg"></div>
+        </form>
+    </div>
+
+    <div class="lateral-image">
+        <img src="~/images/imageBusca.jpeg" alt="Imagem de Busca" />
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="~/js/search.js"></script>
+
+    <script>
+        $(function () {
+            $('#minDate, #maxDate').mask('00/00/0000');
+
+            $('#minDate, #maxDate').datepicker({
+                dateFormat: 'dd/mm/yy',
+                showOn: 'focus',
+                changeMonth: true,
+                changeYear: true
+            });
+
+            $('.calendar-icon').on('click', function () {
+                const target = $(this).data('target');
+                $('#' + target).focus();
+            });
+
+            // CORREÇÃO: Usar Url.Action para gerar a URL correta para CheckSimpleRecords
+            setupDateValidation("searchForm", "minDate", "maxDate", "dateError", "@Url.Action("CheckSimpleRecords", "SalesRecords")");
+        });
+    </script>
+}

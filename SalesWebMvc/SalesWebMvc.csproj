@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>SalesWebMvc</AssemblyName>
+    <RootNamespace>SalesWebMvc</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\Home\AboutProject.cshtml.cs" />
+    <Compile Remove="Views\SalesRecords\Create.cshtml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\css\departamentsAndSellers.cs" />
+    <Content Remove="wwwroot\css\DepartamentsAndSellers.css" />
+    <Content Remove="wwwroot\css\departmentsAndSellers.cs" />
+    <Content Remove="wwwroot\css\privacy.css" />
+    <Content Remove="wwwroot\css\style.css" />
+    <Content Remove="wwwroot\js\GroupingGrapg.js" />
+    <Content Remove="wwwroot\js\GroupingGraph.js" />
+    <Content Remove="wwwroot\js\SimpleGraph.cs" />
+    <Content Remove="wwwroot\js\SimpleGraph.js" />
+    <Content Remove="wwwroot\js\SimplesGraph.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.4" />
+  </ItemGroup>
+
+</Project>

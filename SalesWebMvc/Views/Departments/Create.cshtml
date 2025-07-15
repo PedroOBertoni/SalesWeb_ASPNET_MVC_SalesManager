@@ -1,0 +1,31 @@
+﻿@model SalesWebMvc.Models.Department
+
+@{
+    ViewData["Title"] = "Criar Departamento";
+}
+
+
+<h2 class="title-cian">@ViewData["Title"]</h2>
+
+<a asp-action="Index" class="btn-back">
+    <img src="~/images/voltar.png" alt="Voltar a Tela Anterior" />
+</a>
+
+<div class="row ">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Nome</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Criar" class="btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

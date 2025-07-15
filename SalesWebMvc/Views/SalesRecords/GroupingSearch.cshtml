@@ -1,0 +1,171 @@
+﻿@using SalesWebMvc.Models
+
+@model List<IGrouping<Department, SalesWebMvc.Models.SalesRecord>>
+
+@{
+    ViewData["Title"] = "Busca Agrupada";
+
+    // Coleta todos os dados do gráfico em uma lista de objetos anônimos para serialização
+    var allChartData = Model.Select(group => new
+    {
+        DeptId = group.Key.Id,
+        DeptName = group.Key.Name,
+        VendasPorMes = group
+            .GroupBy(v => new { v.Date.Year, v.Date.Month })
+            .OrderBy(g => g.Key.Year).ThenBy(g => g.Key.Month)
+            .Select(g => new
+            {
+                Mes = $"{g.Key.Month:D2}/{g.Key.Year}",
+                Total = g.Sum(v => v.Amount)
+            })
+            .ToList()
+    }).ToList();
+}
+
+<a asp-action="IndexGroupingSearch" class="btn-back">
+    <img src="~/images/voltar.png" alt="Voltar a Tela Anterior" />
+</a>
+
+@if (ViewData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewData["ErrorMessage"]
+    </div>
+}
+
+<br />
+<h2 class="title-white">Total Geral de Vendas: @Model.SelectMany(g => g).Sum(obj => obj.Amount).ToString("F2")</h2>
+<br />
+
+@foreach (var group in Model)
+{
+    var deptId = group.Key.Id;
+    var chartId = $"graficoDepto_{deptId}";
+
+    <br />
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Departamento: @group.Key.Name - Total: @group.Sum(v => v.Amount).ToString("F2")</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr class="success">
+                        <th>Id</th>
+                        <th>Data</th>
+                        <th>Vendedor</th>
+                        <th>Valor</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in group)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Date.ToString("dd/MM/yyyy")</td>
+                            <td>@item.Seller.Name</td>
+                            <td>@item.Amount.ToString("F2")</td>
+                            <td class="status-@item.Status.ToString().ToLower()">@item.Status</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <h4>Gráfico de Vendas por Mês - @group.Key.Name</h4>
+        <canvas id="@chartId" width="800" height="400"></canvas>
+
+        @* REMOVIDO: O bloco <script> individual de dentro do loop foreach foi movido para o @section Scripts abaixo. *@
+    </div>
+}
+
+@* Adiciona um elemento para armazenar todos os dados dos gráficos para JavaScript *@
+<script id="all-grouped-charts-data" type="application/json">
+    @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(allChartData))
+</script>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const allGroupedChartsDataElement = document.getElementById("all-grouped-charts-data");
+            if (!allGroupedChartsDataElement) {
+                console.error("Elemento 'all-grouped-charts-data' não encontrado. Verifique se o ID está correto e se o script é carregado após o elemento.");
+                return;
+            }
+
+            const allGroupedChartsData = JSON.parse(allGroupedChartsDataElement.textContent);
+
+            allGroupedChartsData.forEach(groupData => {
+                const chartId = `graficoDepto_${groupData.DeptId}`;
+                const ctx = document.getElementById(chartId)?.getContext('2d');
+
+                if (!ctx) {
+                    console.warn(`Contexto do gráfico '${chartId}' não encontrado para o departamento ${groupData.DeptName}.`);
+                    return;
+                }
+
+                const labels = groupData.VendasPorMes.map(v => v.Mes);
+                const data = groupData.VendasPorMes.map(v => v.Total);
+
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: `Total de Vendas (${groupData.DeptName})`, // Adiciona o nome do departamento no label
+                            data: data,
+                            backgroundColor: 'rgba(0, 224, 224, 0.5)',
+                            borderColor: 'rgba(0, 224, 224, 1)',
+                            borderWidth: 1,
+                            borderRadius: 6 // Adiciona um pouco de estilo para barras arredondadas
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        indexAxis: 'y', // Define o eixo para barras horizontais
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: '#aaaaaa',
+                                    font: { size: 14 }
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        return 'R$ ' + context.raw.toFixed(2).replace('.', ',');
+                                    }
+                                },
+                                bodyFont: { size: 14 },
+                                titleFont: { size: 14 }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                ticks: {
+                                    color: '#aaaaaa',
+                                    font: { size: 14 },
+                                    callback: function (value) {
+                                        return 'R$ ' + value.toLocaleString('pt-BR');
+                                    }
+                                },
+                                grid: { color: "rgba(255,255,255,0.1)" }
+                            },
+                            y: {
+                                ticks: {
+                                    color: '#aaaaaa',
+                                    font: { size: 14 }
+                                },
+                                grid: { color: "rgba(255,255,255,0.1)" }
+                            }
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}

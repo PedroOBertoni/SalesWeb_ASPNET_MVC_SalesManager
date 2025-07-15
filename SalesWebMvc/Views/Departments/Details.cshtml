@@ -1,0 +1,46 @@
+﻿@model SalesWebMvc.Models.Department
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h2 class="title-white">@ViewData["Title"]</h2>
+
+<a asp-action="Index" class="btn-back">
+    <img src="~/images/voltar.png" alt="Voltar a Tela Anterior" />
+</a>
+
+@if (Model.Sellers != null && Model.Sellers.Any())
+{
+    <h3 class="text-white">Vendedores do Departamento</h3>
+
+    <table class="table text-white">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Data de Nasc.</th>
+                <th>Salário Base</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Sellers)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>
+                        <a href="mailto:@item.Email" class="text-info text-decoration-none">
+                            @item.Email
+                        </a>
+                    </td>
+                    <td>@item.BirthDate.ToString("dd/MM/yyyy")</td>
+                    <td>R$ @item.BaseSalary.ToString("N2")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="text-warning">Nenhum vendedor registrado nesse departamento.</p>
+}

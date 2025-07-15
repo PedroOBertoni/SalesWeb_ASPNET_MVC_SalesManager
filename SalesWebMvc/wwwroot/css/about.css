@@ -1,0 +1,146 @@
+﻿:root {
+    --primary-color: #00e0e0; /* Ciano vibrante */
+    --bg-color: #0d0d0d; /* Quase preto */
+    --text-color: #ffffff; /* Branco puro */
+    --muted-text: #aaaaaa; /* Cinza claro */
+    --card-bg: #1a1a1a; /* Cinza bem escuro */
+    --border-color: #333333; /* Borda sutil */
+    --navbar-bg: #000000; /* Preto puro para o cabeçalho */
+}
+
+/* Hero Section */
+.about-hero {
+    background-color: var(--navbar-bg);
+    padding: 60px 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero-description {
+    font-size: 1.3em;
+    color: var(--muted-text);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* Conteúdo Principal (Container de Cards) */
+.about-page-content {
+    max-width: 1000px; /* Definindo largura máxima para o container principal */
+    margin: 0 auto; /* Centraliza o container */
+    padding: 50px 20px; /* Padding no topo e nas laterais */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* FORÇA DUAS COLUNAS DE IGUAL LARGURA */
+    gap: 35px;
+    grid-auto-rows: minmax(min-content, max-content); /* Ajusta a altura da linha com base no conteúdo */
+}
+
+/* Seções de Card */
+.about-section.card {
+    background-color: var(--card-bg);
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-color);
+    /* Transição para transform e box-shadow já estava aqui, mantida e consistente */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+}
+
+    .about-section.card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 25px rgba(0, 224, 224, 0.15);
+    }
+
+    /* Novas classes para controlar o span */
+    .about-section.card.full-width {
+        grid-column: span 2; /* Faz o card ocupar 2 colunas */
+    }
+
+/* Títulos das Seções (dentro dos Cards) */
+.section-title-highlight {
+    font-size: 2em;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-weight: 600;
+    text-align: left;
+    border-bottom: 2px solid rgba(0, 224, 224, 0.3);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* Parágrafos dentro das Seções */
+.about-section p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    margin-bottom: 18px;
+    color: var(--muted-text);
+}
+
+/* Listas dentro das Seções */
+.about-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.about-section li {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    color: var(--text-color);
+    position: relative;
+    padding-left: 25px;
+}
+
+    .about-section li::before {
+        content: "•"; /* Bullet point customizado */
+        color: var(--primary-color);
+        font-size: 1.2em;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+/* Habilidades Técnicas - Grid Interno */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.skill-category {
+    text-align: left;
+}
+
+    .skill-category h3 {
+        font-size: 1.3em;
+        color: var(--primary-color);
+        margin-bottom: 15px;
+        border-bottom: 1px dashed rgba(0, 224, 224, 0.15);
+        padding-bottom: 8px;
+    }
+
+    .skill-category ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .skill-category li {
+        font-size: 1em;
+        margin-bottom: 8px;
+        color: var(--muted-text);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+        .skill-category li::before {
+            content: "•"; /* Um pequeno ícone visual */
+            font-size: 0.9em;
+            color: var(--primary-color);
+        }

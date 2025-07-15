@@ -1,0 +1,47 @@
+﻿@model IEnumerable<SalesWebMvc.Models.Department>
+
+@{
+	ViewData["Title"] = "Departamentos";
+}
+
+@section ExtraStyles {
+	<link rel="stylesheet" href="~/css/departmentsAndSellers.css" />
+}
+
+<div class="departaments-content">
+	<h2 class="title-white">@ViewData["Title"]</h2>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					Nome
+				</th>
+				<th>
+					Ações
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.Name)
+					</td>
+					<td>
+						<div class="action-icons">
+							<a asp-action="Edit" asp-route-id="@item.Id"><img src="~/images/editar.svg" alt="Editar" width="25px" /></a>
+							<a asp-action="Details" asp-route-id="@item.Id" padding-right:5px;><img src="~/images/detalhes.png" alt="Detalhes" width="25px" /></a>
+							<a asp-action="Delete" asp-route-id="@item.Id"><img src="~/images/deletar.png" alt="Deletar" width="25px" /></a>
+						</div>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+
+	<div class="centered-button">
+		<a asp-action="Create" class="btn-primary">Criar Novo</a>
+	</div>	
+</div>

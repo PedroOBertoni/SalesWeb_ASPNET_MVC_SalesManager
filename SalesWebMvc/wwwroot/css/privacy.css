@@ -1,0 +1,7 @@
+﻿@import url('about.css'); /* Reutiliza o estilo base da página Sobre */
+
+.about-hero .hero-description strong {
+    color: var(--primary-color);
+}
+
+/* Poderia adicionar ajustes específicos aqui, se desejar */
