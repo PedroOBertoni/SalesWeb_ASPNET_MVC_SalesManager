@@ -61,3 +61,9 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+# Forçar o C# como linguagem principal
+*.cs linguist-detectable=true
+
+# Ignorar os arquivos .cshtml da contagem de linguagem
+*.cshtml linguist-detectable=false
