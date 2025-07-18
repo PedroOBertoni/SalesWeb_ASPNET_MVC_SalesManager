@@ -33,7 +33,7 @@ Além de ser um estudo técnico, o sistema também simula um cenário real de us
 - Entity Framework Core
 - LINQ
 - C#
-- SQL Server (ou SQLite)
+- PostgreSQL
 
 ---
 
