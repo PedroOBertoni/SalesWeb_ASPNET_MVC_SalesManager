@@ -32,7 +32,6 @@ Além de ser um estudo técnico, o sistema também simula um cenário real de us
 - ASP.NET Core MVC
 - Entity Framework Core
 - LINQ
-- Bootstrap
 - C#
 - SQL Server (ou SQLite)
 
